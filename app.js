@@ -14,12 +14,18 @@ connection.connect((error) => {
   console.log('Connected');
 });
 
-const person = { email: faker.internet.email() }
+// Generate 500 users using faker library.
+let data = [];
 
-connection.query('INSERT INTO users SET ?', person, (error, results, fields) => {
+for (let i = 0; i < 500; ++i) {
+  data.push([faker.internet.email(), faker.date.past()]);
+}
+
+// Query to insert 500 users into the database.
+const q = 'INSERT INTO users(email, created_at) VALUES ?';
+
+connection.query(q, [data], (error, results, fields) => {
   if (error) throw error;
-
-  console.log(results);
 });
 
 connection.end();
