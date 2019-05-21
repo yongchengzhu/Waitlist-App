@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const faker = require('faker');
 
 const connection = mysql.createConnection({
   host:     'localhost',
@@ -13,10 +14,12 @@ connection.connect((error) => {
   console.log('Connected');
 });
 
-connection.query('SELECT NOW() AS current_datetime', (error, results, fields) => {
+const person = { email: faker.internet.email() }
+
+connection.query('INSERT INTO users SET ?', person, (error, results, fields) => {
   if (error) throw error;
 
-  console.log(results[0].current_datetime);
+  console.log(results);
 });
 
 connection.end();
