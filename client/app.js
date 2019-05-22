@@ -2,6 +2,9 @@ const express = require('express');
 const mysql   = require('mysql');
 const app     = express();
 
+// Express settings
+app.set('view engine', 'ejs');
+
 // Connect to local MySQL
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -22,7 +25,7 @@ app.get('/', (req, res) => {
   connection.query(q, (error, results) => {
     if (error) res.send(error);
 
-    res.send(`We have ${results[0].total_users} users in our database!`)
+    res.render('homepage', {total_users: results[0].total_users});
   });
 });
 
