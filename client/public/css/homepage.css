@@ -1,7 +1,10 @@
 body {
-  font-family: Roboto;
-  text-shadow: 0 0.05rem 0.1rem rgba(0,0,0,0.5);
-  color:       rgb(66,69,86);
+  font-family:       Roboto;
+  text-shadow:       0 0.05rem 0.1rem rgba(0,0,0,0.5);
+  color:             rgb(66,69,86);
+  background-image:  url("/images/background.jpg");
+  background-repeat: no-repeat;
+  background-size:   cover;
 }
 
 .content {
