@@ -5,6 +5,7 @@ const app        = express();
 
 // Express middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 // Express settings
 app.set('view engine', 'ejs');
