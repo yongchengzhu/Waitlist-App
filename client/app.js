@@ -1,6 +1,10 @@
-const express = require('express');
-const mysql   = require('mysql');
-const app     = express();
+const bodyParser = require('body-parser');
+const express    = require('express');
+const mysql      = require('mysql');
+const app        = express();
+
+// Express middlewares
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Express settings
 app.set('view engine', 'ejs');
@@ -27,6 +31,19 @@ app.get('/', (req, res) => {
 
     res.render('homepage', {total_users: results[0].total_users});
   });
+});
+
+app.post('/register', (req, res) => {
+  const q    = 'INSERT INTO users SET ?';
+  const user = {
+    email: req.body.email
+  };
+
+  connection.query(q, user, (error, results) => {
+    if (error) res.send(error);
+
+    res.redirect('/');
+  })
 });
 
 // Listen to port
