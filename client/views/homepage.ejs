@@ -1,15 +1,25 @@
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,400&display=swap" rel="stylesheet">
-<link href="/css/homepage.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Waitlist App</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400&display=swap" rel="stylesheet">
+    <link href="/css/homepage.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="content">
+        <h1>JOIN US</h1>
+        <p>
+          Enter your email to join <strong><%= total_users %></strong> others on our
+          waitlist.
+        </p>
 
-<div class="content">
-  <h1>JOIN US</h1>
-  <p>
-    Enter your email to join <strong><%= total_users %></strong> others on our
-    waitlist.
-  </p>
-
-  <form method="POST" action="/register">
-    <input name="email" type="text" placeholder="Enter your email">
-    <button>Join Now</button>
-  </form>
-</div>
+        <form method="POST" action="/register">
+          <input class="form" name="email" type="text" placeholder="Enter your email">
+          <button>Join Now</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
