@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const express    = require('express');
 const mysql      = require('mysql');
+const keys       = require('./config/keys.js');
 const app        = express();
 
 // Express middlewares
@@ -11,11 +12,18 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // Connect to local MySQL
+// const connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: '123',
+//   database: 'waitlist_db'
+// });
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '123',
-  database: 'waitlist_db'
+  host: keys.host,
+  user: keys.user,
+  password: keys.password,
+  database: keys.database,
+  port: keys.port
 });
 
 connection.connect((error) => {
@@ -48,6 +56,8 @@ app.post('/register', (req, res) => {
 });
 
 // Listen to port
-app.listen(8080, () => {
-  console.log('Listening to port 8080...');
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log(`Listening to port ${PORT}...`);
 });
